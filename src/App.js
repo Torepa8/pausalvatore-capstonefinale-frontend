@@ -5,18 +5,28 @@ import NavComponent from './component/Nav/Nav.jsx';
 import Main from './component/Main/Main.jsx';
 import Search from './component/Search/search.jsx';
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './component/Login/Login.jsx';
 
 
 function App() {
   const [search, setSearch] = useState('');
-  return(
-  <>
-    
-    <NavComponent />
-    <Search setSearch={setSearch} search={search}/>
-    <Main search={search} />
-
-  </>
-)}
+  return (
+    <>
+      <BrowserRouter>
+        <NavComponent />
+        <Routes>
+          <Route path='/' element={<Search setSearch={setSearch} search={search} />} />
+        </Routes>
+        <Routes>
+          <Route path='/' element={<Main search={search} />} />
+        </Routes>
+        <Routes>
+          <Route path="/logincompany" element={<Login />} />
+        </Routes>
+      </BrowserRouter >
+    </>
+  )
+}
 
 export default App;

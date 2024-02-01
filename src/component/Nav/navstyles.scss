@@ -1,0 +1,22 @@
+//stile per i componenti
+
+.navbar {
+    background-color: white;
+}
+
+#logo{
+    width: 100px;
+    height: 100px;
+    margin: 40px;
+}
+
+.nav-link {
+    border: 1px solid green;
+    border-radius: 10px;
+    margin-right: 3px;
+} 
+
+.nav-link:hover {
+    background-color: green;
+    color: white;
+}
