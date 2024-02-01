@@ -5,9 +5,9 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 
 const Search = ({ search, setSearch }) => {
     return (
-        <Form>
+        <Form className='ps-5'>
             <Row>
-                <Col>
+                <Col xs={12} md={6}>
                     <Form.Control
                         type="text"
                         placeholder="Search"
