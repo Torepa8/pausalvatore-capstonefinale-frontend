@@ -11,7 +11,7 @@ function Main({search}) {
     const [locandine, setLocandine] = useState([]);
     //carico le locandine da mongoDB e le salvo in un array
     const loadLocandine = useCallback(() => {
-        fetch(process.env.BACKEND_URL + '/locandine')
+        fetch("https://lipoints-backend.onrender.com/locandine")
             .then(response => response.json())
             .then(data => {
                 setLocandine(data);
@@ -29,7 +29,6 @@ function Main({search}) {
         //dopo aver caricato le locandine e averle salvate in un array, le mostro in un carousel
         <Container fluid className='mt-5'>
             {/* //inseriamo lo Spinner e sarà visibile solo se show è true */}
-            {alert(process.env.BACKEND_URL)}
             {show===true&&<Spinner animation="border" />}
             <Row>
                 {locandine.filter((locandina) => locandina.nameOffer.toLowerCase().includes(search.toLowerCase()))
