@@ -5,8 +5,9 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
+import Search from '../Search/search.jsx';
 
-function Main({ search }) {
+function Main({ search, setSearch }) {
     const [show, setShow] = useState(true);
     const [locandine, setLocandine] = useState([]);
     //carico le locandine dal server
@@ -28,6 +29,7 @@ function Main({ search }) {
     return (
         //dopo aver caricato le locandine e averle salvate in un array, le mostro in un carousel
         <Container fluid className='mt-5'>
+            <Search search={search} setSearch={setSearch} />
             {/* //inseriamo lo Spinner e sarà visibile solo se show è true */}
             {show === true && <Spinner animation="border" />}
             <Row>

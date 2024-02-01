@@ -3,10 +3,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavComponent from './component/Nav/Nav.jsx';
 import Main from './component/Main/Main.jsx';
-import Search from './component/Search/search.jsx';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './component/Login/Login.jsx';
+import RegisterB from './component/Login/RegisterBusiness.jsx';
+import LoginB from './component/Login/LoginBusiness.jsx';
 
 
 function App() {
@@ -16,13 +16,9 @@ function App() {
       <BrowserRouter>
         <NavComponent />
         <Routes>
-          <Route path='/' element={<Search setSearch={setSearch} search={search} />} />
-        </Routes>
-        <Routes>
-          <Route path='/' element={<Main search={search} />} />
-        </Routes>
-        <Routes>
-          <Route path="/logincompany" element={<Login />} />
+          <Route path='/' element={<Main search={search} setSearch={setSearch} />} />
+          <Route path="/loginbusiness" element={<LoginB />} />
+          <Route path="/registerbusiness" element={<RegisterB />} />
         </Routes>
       </BrowserRouter >
     </>

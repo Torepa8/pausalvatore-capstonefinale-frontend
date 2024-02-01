@@ -57,7 +57,7 @@ function Register() {
                         </Button>
                     </Form>
                     <p className='mt-3'>
-                        Sei già registrato? <Link to='/login'>Accedi</Link>
+                        Sei già registrato? <Link to='/loginbusiness'>Accedi</Link>
                     </p>
                 </Col>
             </Row>

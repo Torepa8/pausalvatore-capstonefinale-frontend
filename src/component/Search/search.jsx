@@ -10,7 +10,7 @@ const Search = ({ search, setSearch }) => {
                 <Col xs={12} md={6}>
                     <Form.Control
                         type="text"
-                        placeholder="Search"
+                        placeholder="Cerca la tua offerta"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
