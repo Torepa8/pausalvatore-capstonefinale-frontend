@@ -5,14 +5,14 @@ import './navstyles.scss';
 
 function NavComponent() {
     return (
-        <Navbar className='m-5 border border-success rounded-4' expand="lg">
+        <Navbar className='m-5 rounded-5' expand="lg">
             <Container>
-                <Image id="logo" src={logo} alt="logo" className='position-absolute'/>
+                <Image id="logo" src={logo} alt="logo" className='position-absolute t-0'/>
                 {/* <Navbar.Brand href="#home">Service and Offer</Navbar.Brand> */}
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
-                        <Nav.Link className='fs-5' border='success' href="/">Home</Nav.Link>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" className='ms-auto'/>
+                <Navbar.Collapse id="basic-navbar-nav" className='ms-auto'>
+                    <Nav className="ms-auto d-flex align-items-end">
+                        <Nav.Link className='fs-5' href="/">Home</Nav.Link>
                         <Nav.Link className='fs-5' href="#link">Service</Nav.Link>
                         <Nav.Link className='fs-5' href="#link">Offer</Nav.Link>
                         <Nav.Link className='fs-5' href="#link">Contatti</Nav.Link>

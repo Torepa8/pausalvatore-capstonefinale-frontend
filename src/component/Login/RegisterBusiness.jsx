@@ -10,13 +10,31 @@ function Register() {
     const [vat, setVat] = useState('');
     const [address, setAddress] = useState('');
     const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
+    const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const user = { name, businessName, email, vat, password, phone, address};
-        console.log(user);
+        const user = { name, businessName, mail, vat, password, phone, address};
+        //facciamo la post al server per la registrazione
+        fetch('https://lipoints-backend.onrender.com/companies/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert('Registrazione effettuata');
+                //salviamo il token nel local storage
+                localStorage.setItem('token', data.token);
+                //reindirizziamo l'utente alla home
+                window.location.href = '/';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
     return (
@@ -25,12 +43,12 @@ function Register() {
                 <Col xs={12} md={6} lg={4} className='mb-3'>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicName">
-                            <Form.Label>Nome</Form.Label>
-                            <Form.Control type="text" placeholder="Inserisci il tuo nome" value={name} onChange={(e) => setName(e.target.value)} />
+                            <Form.Label>Nome Azienda</Form.Label>
+                            <Form.Control type="text" placeholder="Nome Azienda" value={name} onChange={(e) => setName(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicBusinessName">
-                            <Form.Label>Ragione Sociale</Form.Label>
-                            <Form.Control type="text" placeholder="Inserisci la ragione sociale" value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
+                            <Form.Label>Tipologia Azienda</Form.Label>
+                            <Form.Control type="text" placeholder="Es. Srl Spa o Snc" value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicVat">
                             <Form.Label>Partita IVA</Form.Label>
@@ -46,7 +64,7 @@ function Register() {
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="Inserisci la tua email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <Form.Control type="email" placeholder="Inserisci la tua email" value={mail} onChange={(e) => setMail(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
