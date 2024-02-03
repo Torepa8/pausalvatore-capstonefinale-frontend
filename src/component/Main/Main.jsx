@@ -31,11 +31,11 @@ function Main({ search, setSearch }) {
         <Container fluid className='mt-5'>
             <Search search={search} setSearch={setSearch} />
             {/* //inseriamo lo Spinner e sarà visibile solo se show è true */}
-            {show === true && <Spinner animation="border" />}
+            {show && <Spinner animation="border" />}
             <Row>
                 {locandine.filter((locandina) => locandina.nameOffer.toLowerCase().includes(search.toLowerCase()))
-                    .map((locandina) => (
-                        <Col key={locandina._id} xs={12} md={6} lg={4}>
+                    .map(locandina => (
+                        <Col xs={12} md={6} lg={4}>
                             <div className='text-center mt-3 border border-success rounded-4'>
                                 <h3>{locandina.nameOffer}</h3>
                                 <Image src={locandina.image} alt={locandina.nameOffer} className='w-100' />

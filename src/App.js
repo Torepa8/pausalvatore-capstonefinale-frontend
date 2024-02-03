@@ -5,22 +5,27 @@ import NavComponent from './component/Nav/Nav.jsx';
 import Main from './component/Main/Main.jsx';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import RegisterB from './component/Login/RegisterBusiness.jsx';
-import LoginB from './component/Login/LoginBusiness.jsx';
-
+import Register from './component/Login/Register';
+import Login from './component/Login/Login';
+import UserLog from './context/UserLog.jsx';
 
 function App() {
   const [search, setSearch] = useState('');
+  const [userLog, setUserLog] = useState(localStorage.getItem('name') !== null ? true : false)
+
   return (
     <>
+      <UserLog.Provider value={{ userLog, setUserLog }}>
       <BrowserRouter>
-        <NavComponent />
+        <NavComponent userLog={userLog} />
         <Routes>
           <Route path='/' element={<Main search={search} setSearch={setSearch} />} />
-          <Route path="/loginbusiness" element={<LoginB />} />
-          <Route path="/registerbusiness" element={<RegisterB />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login userLog={userLog} setUserLog={setUserLog} />} />
+          <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </BrowserRouter >
+      </UserLog.Provider>
     </>
   )
 }
