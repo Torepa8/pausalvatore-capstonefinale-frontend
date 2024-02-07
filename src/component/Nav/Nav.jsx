@@ -1,9 +1,19 @@
-import { Image, Container, Nav, Navbar, NavDropdown, NavItem, NavLink } from 'react-bootstrap';
+import { Image, Container, Nav, Navbar, NavLink } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logolipoints.png';
 import './navstyles.scss';
 
-function NavComponent({ userLog }) {
+
+function NavComponent({ userLog, setUserLog }) {
+    const logout = (e) => {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        localStorage.removeItem('name');
+        localStorage.removeItem('id');
+        setUserLog(false);
+        window.location.href = '/';
+    }
+    
     return (
         <Navbar className='m-5 rounded-5' expand="lg">
             <Container>
@@ -17,11 +27,14 @@ function NavComponent({ userLog }) {
                         <Nav.Link className='fs-6' href="#link">Offer</Nav.Link>
                         <Nav.Link className='fs-6' href="#link">Contatti</Nav.Link>
                         {userLog ?
-                            <NavLink className='fs-6'>
+                            <NavLink className='fs-6' href="/admin">
                                 Ciao {localStorage.getItem('name')}!
                             </NavLink>
                             :
                             <Nav.Link className='fs-6' href="/login">Login</Nav.Link>
+                        }
+                        {userLog &&
+                            <Nav.Link className='fs-6' onClick={logout}>Logout</Nav.Link>
                         }
                     </Nav>
                 </Navbar.Collapse>

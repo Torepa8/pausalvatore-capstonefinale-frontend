@@ -24,6 +24,7 @@ function Login({userLog, setUserLog}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const user = { mail, password };
+        setTypeUser(typeUser);
         //facciamo la post al server per il login
         fetch(`https://lipoints-backend.onrender.com/${typeUser}/login`, {
             method: 'POST',
@@ -39,9 +40,11 @@ function Login({userLog, setUserLog}) {
                 setUserLog(true);
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('name', data.company.name);
+                localStorage.setItem('id', data.company._id);
                 window.location.href = '/';
             })
             .catch((error) => {
+                alert('Errore, riprova');
                 console.error('Error:', error);
             });
     }
