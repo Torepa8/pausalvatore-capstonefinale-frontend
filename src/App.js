@@ -9,6 +9,8 @@ import Register from './component/Login/Register';
 import Login from './component/Login/Login';
 import UserLog from './context/UserLog.jsx';
 import Admin from './component/Admin/Admin.jsx';
+import Offer from './component/Main/Offer.jsx';
+import Service from './component/Main/Service.jsx';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -21,6 +23,9 @@ function App() {
         <NavComponent userLog={userLog} setUserLog={setUserLog} />
         <Routes>
           <Route path='/' element={<Main search={search} setSearch={setSearch} />} />
+          <Route path='/offer' element={<Offer search={search} setSearch={setSearch} />} />
+          <Route path='/service' element={<Service search={search} setSearch={setSearch} />} />
+          {/* <Route path='/about' element={<About } /> */}
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login userLog={userLog} setUserLog={setUserLog} />} />
           <Route path='/admin' element={<Admin />} />

@@ -23,8 +23,8 @@ function NavComponent({ userLog, setUserLog }) {
                 <Navbar.Collapse id="basic-navbar-nav" className='ms-auto'>
                     <Nav className="ms-auto d-flex align-items-end">
                         <Nav.Link className='fs-6' href="/">Home</Nav.Link>
-                        <Nav.Link className='fs-6' href="#link">Service</Nav.Link>
-                        <Nav.Link className='fs-6' href="#link">Offer</Nav.Link>
+                        <Nav.Link className='fs-6' href="/service">Service</Nav.Link>
+                        <Nav.Link className='fs-6' href="/offer">Offer</Nav.Link>
                         <Nav.Link className='fs-6' href="#link">Contatti</Nav.Link>
                         {userLog ?
                             <NavLink className='fs-6' href="/admin">

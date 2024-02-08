@@ -3,7 +3,7 @@
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useState } from 'react';
 
-function ModalLocandina({ show, handleClose }) {
+function ModalLocandina({ show, handleClose, idLoc }) {
 
     const [image, setImage] = useState(new FormData());
     const [locandine, setLocandine] = useState([]);
@@ -37,7 +37,7 @@ function ModalLocandina({ show, handleClose }) {
         e.preventDefault();
         const token = localStorage.getItem('token');
         //facciamo la post al server per la registrazione
-        fetch(`https://lipoints-backend.onrender.com/locandine/${locandine[locandine.length-1]._id}`, {
+        fetch(`https://lipoints-backend.onrender.com/locandine/${idLoc}`, {
             method: 'PATCH',
             body: image,
             headers: {
@@ -56,7 +56,7 @@ function ModalLocandina({ show, handleClose }) {
     }
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} idLoc={idLoc}>
             <Modal.Header closeButton>
                 <Modal.Title>Inserisci l'immagine della locandina</Modal.Title>
             </Modal.Header>
