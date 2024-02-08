@@ -1,7 +1,7 @@
 //componente modal per l'inserimento dell'immagine della locandina
 
 import { Modal, Button, Form } from 'react-bootstrap';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 function ModalLocandina({ show, handleClose, idLoc }) {
 
@@ -9,7 +9,7 @@ function ModalLocandina({ show, handleClose, idLoc }) {
     const [locandine, setLocandine] = useState([]);
     const token = localStorage.getItem('token');
 
-    const loadLocandine = () => {
+    const loadLocandine = useCallback(() => {
         fetch(`https://lipoints-backend.onrender.com/locandine/company/${localStorage.getItem("id")}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -20,7 +20,8 @@ function ModalLocandina({ show, handleClose, idLoc }) {
                 setLocandine(data);
             })
             .catch(err => console.error(err));
-    }
+    }, [token]);
+    // loadLocandine();
 
 
     const handlefile = (ev) => {
@@ -30,7 +31,9 @@ function ModalLocandina({ show, handleClose, idLoc }) {
             return img;
         })
         ev.preventDefault();
-        loadLocandine();
+        if(!idLoc){
+            idLoc=locandine[locandine.length-1]._id;
+        }
     }
 
     const handleSubmit = (e) => {
