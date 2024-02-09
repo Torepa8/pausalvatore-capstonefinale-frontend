@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+// import React, { useCallback } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavComponent from './component/Nav/Nav.jsx';
@@ -17,7 +17,7 @@ import LocDetails from './component/Main/LocDetails.jsx';
 function App() {
   const [search, setSearch] = useState('');
   const [userLog, setUserLog] = useState(localStorage.getItem('name') !== null ? true : false)
-  const [locandine, setLocandine] = useState([])
+  // const [locandine, setLocandine] = useState([])
 
   // const Loc = useCallback(() => {
   //   fetch(`https://lipoints-backend.onrender.com/`)
