@@ -19,7 +19,7 @@ function LocDetails() {
                 console.log(data);
             })
             .catch(err => console.error(err));
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         loadLocandine();

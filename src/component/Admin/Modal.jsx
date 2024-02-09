@@ -1,7 +1,7 @@
 //componente modal per l'inserimento dell'immagine della locandina
 
 import { Modal, Button, Form } from 'react-bootstrap';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 function ModalLocandina({ show, handleClose, idLoc }) {
 
@@ -21,7 +21,10 @@ function ModalLocandina({ show, handleClose, idLoc }) {
             })
             .catch(err => console.error(err));
     }, [token]);
-    // loadLocandine();
+    
+    useEffect(() => {
+        loadLocandine();
+    }, [loadLocandine]);
 
 
     const handlefile = (ev) => {
