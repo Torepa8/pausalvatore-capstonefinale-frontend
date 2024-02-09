@@ -25,7 +25,7 @@ function NavComponent({ userLog, setUserLog }) {
                         <Nav.Link className='fs-6' href="/">Home</Nav.Link>
                         <Nav.Link className='fs-6' href="/service">Service</Nav.Link>
                         <Nav.Link className='fs-6' href="/offer">Offer</Nav.Link>
-                        <Nav.Link className='fs-6' href="#link">Contatti</Nav.Link>
+                        <Nav.Link className='fs-6' href="/contact">Contatti</Nav.Link>
                         {userLog ?
                             <NavLink className='fs-6' href="/admin">
                                 Ciao {localStorage.getItem('name')}!

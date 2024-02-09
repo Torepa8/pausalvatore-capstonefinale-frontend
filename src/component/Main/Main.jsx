@@ -3,9 +3,11 @@
 import React, { useCallback, useEffect } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './mainstyles.scss';
 import { useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import Search from '../Search/search.jsx';
+import { Link } from 'react-router-dom';
 
 function Main({ search, setSearch }) {
     const [show, setShow] = useState(true);
@@ -36,6 +38,7 @@ function Main({ search, setSearch }) {
                 {locandine.filter((locandina) => locandina.nameOffer.toLowerCase().includes(search.toLowerCase()))
                     .map(locandina => (
                         <Col xs={12} md={6} lg={4}>
+                            <Link Loc={locandina} className='text-decoration-none' to={`/details/${locandina._id}`}>
                             <div className='text-center mt-3 border border-success rounded-4'>
                                 <h3>{locandina.nameOffer}</h3>
                                 <Image src={locandina.image} alt={locandina.nameOffer} className='w-100' />
@@ -43,6 +46,7 @@ function Main({ search, setSearch }) {
                                 <p>{locandina.company.name}</p>
                                 <p>{locandina.company.address}</p>
                             </div>
+                            </Link>
                         </Col>
                     ))}
             </Row>
