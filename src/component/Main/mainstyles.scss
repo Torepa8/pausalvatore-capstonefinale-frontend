@@ -1,9 +1,13 @@
 a{
-    color: white;
+    color: #120991;
 }
 
 a > div{
-    background-color: darkblue;
+    background-color: transparent;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .backbutton{

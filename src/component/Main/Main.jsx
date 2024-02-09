@@ -34,7 +34,7 @@ function Main({ search, setSearch }) {
             <Search search={search} setSearch={setSearch} />
             {/* //inseriamo lo Spinner e sarà visibile solo se show è true */}
             {show && <Spinner animation="border" />}
-            <Row>
+            <Row className='gx-3 gy-3'>
                 {locandine.filter((locandina) => locandina.nameOffer.toLowerCase().includes(search.toLowerCase()))
                     .map(locandina => (
                         <Col key={locandina._id} xs={12} md={6} lg={4}>
