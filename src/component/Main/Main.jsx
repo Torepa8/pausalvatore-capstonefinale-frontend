@@ -37,7 +37,7 @@ function Main({ search, setSearch }) {
             <Row>
                 {locandine.filter((locandina) => locandina.nameOffer.toLowerCase().includes(search.toLowerCase()))
                     .map(locandina => (
-                        <Col xs={12} md={6} lg={4}>
+                        <Col key={locandina._id} xs={12} md={6} lg={4}>
                             <Link Loc={locandina} className='text-decoration-none' to={`/details/${locandina._id}`}>
                             <div className='text-center mt-3 border border-success rounded-4'>
                                 <h3>{locandina.nameOffer}</h3>
