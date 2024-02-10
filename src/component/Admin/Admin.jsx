@@ -18,6 +18,35 @@ function Admin() {
     const [locClick, setLocClick] = useState('');
     // const [modifica, setModifica] = useState(false);
 
+    //fetch per l'immagine della locandina
+    const [image, setImage] = useState(new FormData());
+    const handlefile = (ev) => {
+        setImage((img) => {
+            img.delete("image");
+            img.append("image", ev.target.files[0])
+            return img;
+        })
+        ev.preventDefault();
+    }
+
+    const upimage = useCallback((idloc) => {
+        fetch(`https://lipoints-backend.onrender.com/locandine/${idloc}`, {
+            method: 'PATCH',
+            body: image,
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+        })
+            .then((response) => {
+                if (response.ok) {
+                    alert('Immagine caricata');
+                    window.location.href = '/admin';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            })
+    }, [image, token]);
 
     //questa fetch carica le locandine del negozio loggato
     const loadLocandine = useCallback(() => {
@@ -35,11 +64,11 @@ function Admin() {
 
     useEffect(() => {
         loadLocandine();
-    }, [locandine, loadLocandine]);
+    }, [loadLocandine]);
 
     //inserimento campi della locandina selezionata
     const selectLocandina = (id) => {
-        loadLocandine()
+        // loadLocandine()
         const locandinaClick = locandine.find(locandina => locandina._id === id);
         //inseriamo i dati nei campi
         setNameOffer(locandinaClick.nameOffer);
@@ -49,6 +78,29 @@ function Admin() {
         setLocClick(locandinaClick._id);
         setModifica(true);
     }
+    
+    //fecth per l'inserimento della locandina
+    const insertLocandina = useCallback((newLoc)=> {
+        alert("Inserimento locandina")
+        fetch(`https://lipoints-backend.onrender.com/locandine/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(newLoc)
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert('Locandina inserita');
+                // setLocClick(data._id);
+                upimage(data._id);
+                // setShow(true);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }, [token, upimage]);
 
     //questa fetch modifica la locandina selezionata
     const updateLocandina = (id) => {
@@ -67,7 +119,8 @@ function Admin() {
             .then(data => {
                 alert('Locandina modificata');
                 // window.location.href = '/admin';
-                setShow(true);
+                // setShow(true);
+                upimage(id);
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -95,32 +148,18 @@ function Admin() {
         }
     }
 
+
+
     //qui inseriamo la nuova locandina nel proprio negozio
     //l'id verrà recuperato dal backend
     const handleSubmit = (e) => {
-        e.preventDefault();
         const offer = { nameOffer, description, expirationDate, type };
         if (!modifica) {
-            fetch(`https://lipoints-backend.onrender.com/locandine/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(offer),
-            })
-                .then(response => response.json())
-                .then(data => {
-                    alert('Locandina inserita');
-                    // window.location.href = '/admin';
-                    setShow(true);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+            insertLocandina(offer);
         } else {
             updateLocandina(locClick);
         }
+        e.preventDefault();
     }
 
     return (
@@ -146,10 +185,14 @@ function Admin() {
                             <Form.Label>Scadenza</Form.Label>
                             <Form.Control required type="date" placeholder="Scadenza locandina" value={expirationDate} onChange={(e) => setExpirationDate(e.target.value)} />
                         </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicImage">
+                            <Form.Label>Immagine</Form.Label>
+                            <Form.Control required type="file" onChange={handlefile} />
+                        </Form.Group>
                         <Button variant="primary" type="submit">
                             {!modifica && <span>Inserisci</span>}
                             {modifica && <span>Modifica</span>}
-                            <Modal show={show} handleClose={() => setShow(false)} idLoc={locClick} />
+                            <Modal show={show} handleClose={() => setShow(false)} idloc={locClick} />
                         </Button>
                     </Form>
                 </Col>

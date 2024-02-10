@@ -16,9 +16,15 @@ Per il backend invece node express e mongoDb.
 ## Funzionalità:
 
 Registrazione utente azienda e login
+
 Registrazione utente e login (in futuro per offerte dedicate o poter salvare le locandine preferite)
+
 Visualizzazione di tutte le locandine inserite dalle aziende
+
 Ricerca in base al titolo della locandina
+
 Sezioni della tipologia della locandina (offerte o servizi)
+
 Visualizzazione dettagli locandina
+
 Sezione contatti per info sulla piattaforma (da implementare)

@@ -1,9 +1,11 @@
 //componente modal per l'inserimento dell'immagine della locandina
+//sostituito con delle funzioni direttamente allinterno di Admin.jsx
+//perchè non funzionava correttamente
 
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useCallback, useEffect, useState } from 'react';
 
-function ModalLocandina({ show, handleClose, idLoc }) {
+function ModalLocandina({ show, handleClose, idloc }) {
 
     const [image, setImage] = useState(new FormData());
     const [locandine, setLocandine] = useState([]);
@@ -34,8 +36,9 @@ function ModalLocandina({ show, handleClose, idLoc }) {
             return img;
         })
         ev.preventDefault();
-        if(!idLoc){
-            idLoc=locandine[locandine.length-1]._id;
+        console.log(idloc)
+        if(idloc===""){
+            idloc=locandine[locandine.length-1]._id;
         }
     }
 
@@ -43,7 +46,7 @@ function ModalLocandina({ show, handleClose, idLoc }) {
         e.preventDefault();
         const token = localStorage.getItem('token');
         //facciamo la post al server per la registrazione
-        fetch(`https://lipoints-backend.onrender.com/locandine/${idLoc}`, {
+        fetch(`https://lipoints-backend.onrender.com/locandine/${idloc}`, {
             method: 'PATCH',
             body: image,
             headers: {
@@ -53,16 +56,21 @@ function ModalLocandina({ show, handleClose, idLoc }) {
             .then((response) => {
                 if (response.ok) {
                     alert('Immagine caricata');
-                    window.location.href = '/admin';
+                    // window.location.href = '/admin';
                 }
             })
             .catch((error) => {
                 console.error('Error:', error);
+            })
+            .finally(() => {
+                handleClose();
+                window.location.href = '/admin';
             });
+            
     }
 
     return (
-        <Modal show={show} onHide={handleClose} idLoc={idLoc}>
+        <Modal show={show} onHide={handleClose} idloc={idloc}>
             <Modal.Header closeButton>
                 <Modal.Title>Inserisci l'immagine della locandina</Modal.Title>
             </Modal.Header>
