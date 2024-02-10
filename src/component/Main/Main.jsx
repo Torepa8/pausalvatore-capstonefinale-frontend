@@ -34,18 +34,18 @@ function Main({ search, setSearch }) {
             <Search search={search} setSearch={setSearch} />
             {/* //inseriamo lo Spinner e sarà visibile solo se show è true */}
             {show && <Spinner animation="border" />}
-            <Row className='gx-3 gy-3'>
+            <Row>
                 {locandine.filter((locandina) => locandina.nameOffer.toLowerCase().includes(search.toLowerCase()))
                     .map(locandina => (
                         <Col key={locandina._id} xs={12} md={6} lg={4}>
                             <Link Loc={locandina} className='text-decoration-none' to={`/details/${locandina._id}`}>
-                            <div className='text-center mt-3 border border-success rounded-4'>
-                                <h3>{locandina.nameOffer}</h3>
-                                <Image src={locandina.image} alt={locandina.nameOffer} className='w-100' />
-                                <p>{locandina.description}</p>
-                                <p>{locandina.company.name}</p>
-                                <p>{locandina.company.address}</p>
-                            </div>
+                                <div className='text-center mt-3 border border-success rounded-4'>
+                                    <h3>{locandina.nameOffer}</h3>
+                                    <Image src={locandina.image} alt={locandina.nameOffer} className='w-100' />
+                                    <p>{locandina.description}</p>
+                                    <p>{locandina.company.name}</p>
+                                    <p>{locandina.company.address}</p>
+                                </div>
                             </Link>
                         </Col>
                     ))}

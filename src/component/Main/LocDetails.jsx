@@ -46,7 +46,7 @@ function LocDetails() {
                     <div className='text-center mt-3 border border-success rounded-4'>
                         <h3>{locandine.nameOffer}</h3>
                         <p>{locandine.description}</p>
-                        <p>{locandine.expirationDate}</p>
+                        <p>{locandine.expirationDate.substring(0,10)}</p>
                         <p>{locandine.company.name}</p>
                         <p>{locandine.company.address}</p>
                         <p>{locandine.company.phone}</p>
