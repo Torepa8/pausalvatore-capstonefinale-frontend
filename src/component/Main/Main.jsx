@@ -18,7 +18,7 @@ function Main({ search, setSearch }) {
             .then(response => response.json())
             .then(data => {
                 setLocandine(data);
-                setShow(false);
+                setShow(false);//nascondo lo spinner
             })
             .catch(err => console.error(err));
     }, []);
@@ -31,6 +31,7 @@ function Main({ search, setSearch }) {
     return (
         //dopo aver caricato le locandine e averle salvate in un array, le mostro in un carousel
         <Container fluid className='mt-5'>
+            <h2 className='text-center'>Le offerte e i servizi del quartiere - Li punti</h2>
             <Search search={search} setSearch={setSearch} />
             {/* //inseriamo lo Spinner e sarà visibile solo se show è true */}
             {show && <Spinner animation="border" />}
@@ -38,7 +39,7 @@ function Main({ search, setSearch }) {
                 {locandine.filter((locandina) => locandina.nameOffer.toLowerCase().includes(search.toLowerCase()))
                     .map(locandina => (
                         <Col key={locandina._id} xs={12} md={6} lg={4}>
-                            <Link Loc={locandina} className='text-decoration-none' to={`/details/${locandina._id}`}>
+                            <Link loc={locandina} className='text-decoration-none' to={`/details/${locandina._id}`}>
                                 <div className='text-center mt-3 border border-success rounded-4'>
                                     <h3>{locandina.nameOffer}</h3>
                                     <Image src={locandina.image} alt={locandina.nameOffer} className='w-100' />
