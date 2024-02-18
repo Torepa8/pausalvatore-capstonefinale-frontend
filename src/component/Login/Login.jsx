@@ -38,10 +38,18 @@ function Login({userLog, setUserLog}) {
                 //salviamo il token nel local storage
                 alert('Login effettuato');
                 setUserLog(true);
+                if(typeUser === 'companies') {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('name', data.company.name);
                 localStorage.setItem('id', data.company._id);
                 window.location.href = '/';
+                }
+                else {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('name', data.user.name);
+                    localStorage.setItem('id', data.user._id);
+                    window.location.href = '/';
+                }
             })
             .catch((error) => {
                 alert('Errore, riprova');

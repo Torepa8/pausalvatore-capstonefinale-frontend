@@ -4,10 +4,8 @@ import React from 'react';
 import { useCallback, useEffect } from 'react';
 import { Form, Button, Container, Row, Col, Image, Spinner } from 'react-bootstrap';
 import { useState } from 'react';
-import Modal from './Modal.jsx';
 
 function Admin() {
-    const [show, setShow] = useState(false);
     const [modifica, setModifica] = useState(false);
     const [nameOffer, setNameOffer] = useState('');
     const [description, setDescription] = useState('');
@@ -192,7 +190,6 @@ function Admin() {
                         <Button variant="primary" type="submit">
                             {!modifica && <span>Inserisci</span>}
                             {modifica && <span>Modifica</span>}
-                            <Modal show={show} handleClose={() => setShow(false)} idloc={locClick} />
                         </Button>
                     </Form>
                 </Col>
