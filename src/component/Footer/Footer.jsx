@@ -1,4 +1,4 @@
-//inseriamo il footer per tuute le pagine
+//inseriamo il footer per tutte le pagine
 
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';

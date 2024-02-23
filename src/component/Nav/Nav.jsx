@@ -15,10 +15,9 @@ function NavComponent({ userLog, setUserLog }) {
     }
     
     return (
-        <Navbar className='m-5 rounded-5' expand="lg">
+        <Navbar className='m-5 rounded-3' expand="lg">
             <Container>
-                <Image id="logo" src={logo} alt="logo" className='position-absolute t-0' />
-                {/* <Navbar.Brand href="#home">Service and Offer</Navbar.Brand> */}
+                <Image id="logo" src={logo} alt="logo" className='position-absolute ts-0' />
                 <Navbar.Toggle aria-controls="basic-navbar-nav" className='ms-auto' />
                 <Navbar.Collapse id="basic-navbar-nav" className='ms-auto'>
                     <Nav className="ms-auto d-flex align-items-end">

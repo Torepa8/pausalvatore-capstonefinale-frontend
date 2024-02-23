@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import Search from '../Search/search.jsx';
 import { Link } from 'react-router-dom';
+import Jumbotron from './Jumbotron.jsx';
 
 function Main({ search, setSearch }) {
     const [show, setShow] = useState(true);
@@ -31,9 +32,8 @@ function Main({ search, setSearch }) {
     return (
         //dopo aver caricato le locandine e averle salvate in un array, le mostro in un carousel
         <Container fluid className='mt-5'>
-            <h2 className='text-center'>Le offerte e i servizi del quartiere - Li punti</h2>
+            <Jumbotron />
             <Search search={search} setSearch={setSearch} />
-            {/* //inseriamo lo Spinner e sarà visibile solo se show è true */}
             {show && <Spinner animation="border" />}
             <Row>
                 {locandine.filter((locandina) => locandina.nameOffer.toLowerCase().includes(search.toLowerCase()))

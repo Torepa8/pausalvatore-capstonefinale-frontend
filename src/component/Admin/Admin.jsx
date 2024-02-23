@@ -13,11 +13,10 @@ function Admin() {
     const [type, setType] = useState('');
     const [locandine, setLocandine] = useState([]);
     const token = localStorage.getItem('token');
-    const [locClick, setLocClick] = useState('');
-    // const [modifica, setModifica] = useState(false);
+    const [locClick, setLocClick] = useState('');    
+    const [image, setImage] = useState(new FormData()); 
 
-    //fetch per l'immagine della locandina
-    const [image, setImage] = useState(new FormData());
+    //questa funzione serve per prendere l'immagine e caricarla nel formdata
     const handlefile = (ev) => {
         setImage((img) => {
             img.delete("image");
@@ -27,6 +26,8 @@ function Admin() {
         ev.preventDefault();
     }
 
+    //questa fetch serve per caricare l'immagine nel server tramite id locandina
+    //attraverso la patch
     const upimage = useCallback((idloc) => {
         fetch(`https://lipoints-backend.onrender.com/locandine/${idloc}`, {
             method: 'PATCH',
@@ -66,7 +67,6 @@ function Admin() {
 
     //inserimento campi della locandina selezionata
     const selectLocandina = (id) => {
-        // loadLocandine()
         const locandinaClick = locandine.find(locandina => locandina._id === id);
         //inseriamo i dati nei campi
         setNameOffer(locandinaClick.nameOffer);
@@ -91,9 +91,7 @@ function Admin() {
             .then(response => response.json())
             .then(data => {
                 alert('Locandina inserita');
-                // setLocClick(data._id);
                 upimage(data._id);
-                // setShow(true);
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -116,8 +114,6 @@ function Admin() {
             .then(response => response.json())
             .then(data => {
                 alert('Locandina modificata');
-                // window.location.href = '/admin';
-                // setShow(true);
                 upimage(id);
             })
             .catch((error) => {
@@ -146,10 +142,8 @@ function Admin() {
         }
     }
 
-
-
     //qui inseriamo la nuova locandina nel proprio negozio
-    //l'id verrà recuperato dal backend
+    //l'id del negozio verrà recuperato dal backend tramite il token
     const handleSubmit = (e) => {
         const offer = { nameOffer, description, expirationDate, type };
         if (!modifica) {

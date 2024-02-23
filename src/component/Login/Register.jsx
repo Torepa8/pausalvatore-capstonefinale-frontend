@@ -67,7 +67,7 @@ function Register() {
     if(typeUser === 'users') {
     return (
         <Container fluid className='mt-5'>
-            <Row>
+            <Row className='justify-content-center'>
                 <Col xs={12} md={6} lg={4} className='mb-3'>
                     <Form onSubmit={handleSubmitUser}>
                         <Form.Group className="mb-3" controlId="formBasicName">
@@ -108,7 +108,7 @@ function Register() {
 } else {
     return (
         <Container fluid className='mt-5'>
-            <Row>
+            <Row className='justify-content-center'>
                 <Col xs={12} md={6} lg={4} className='mb-3'>
                     <Form onSubmit={handleSubmitBusiness}>
                         <Form.Group className="mb-3" controlId="formBasicName">

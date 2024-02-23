@@ -59,7 +59,7 @@ function Login({userLog, setUserLog}) {
 
     return (
         <Container fluid className='mt-5'>
-            <Row>
+            <Row className='justify-content-center'>
                 <Col xs={12} md={6} lg={4} className='mb-3'>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">

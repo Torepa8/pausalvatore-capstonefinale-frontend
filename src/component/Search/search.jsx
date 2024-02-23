@@ -7,7 +7,7 @@ const Search = ({ search, setSearch }) => {
     return (
         <Form className='ps-5'>
             <Row>
-                <Col xs={12} md={6}>
+                <Col xs={8}>
                     <Form.Control
                         type="text"
                         placeholder="Cerca la tua offerta"
@@ -15,8 +15,8 @@ const Search = ({ search, setSearch }) => {
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </Col>
-                <Col>
-                    <Button variant="primary" type="submit">
+                <Col xs={4}>
+                    <Button variant="primary" type="submit" className='w-100'>
                         Cerca
                     </Button>
                 </Col>
